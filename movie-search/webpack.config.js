@@ -34,9 +34,9 @@ const jsLoader = () => {
     }
   }]
 
-  if (isDev) {
-    loaders.push('eslint-loader')
-  }
+  // if (isDev) {
+  //   loaders.push('eslint-loader')
+  // }
 
   return loaders
 }
@@ -45,7 +45,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill','./index.js']
+    index: ['@babel/polyfill','./index.js']
   },
   output: {
     filename: filename('js'),
@@ -61,7 +61,7 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@modules': path.resolve(__dirname, 'src/modules')
+      '@modules': path.resolve(__dirname, 'src/components')
     }
   },
   plugins: [
@@ -93,24 +93,14 @@ module.exports = {
       },
       {
         test: /\.jpg$|\.svg$/,
-        loader: 'url-loader'
+        loader: 'url-loader',
+        options: {
+          limit: false,
+        },
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env'
-            ]
-          }
-        }
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['eslint-loader']
+        use: jsLoader()
       }
     ]
   }

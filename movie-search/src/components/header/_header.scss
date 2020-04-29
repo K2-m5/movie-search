@@ -1,0 +1,18 @@
+.header {
+  height: 110px;
+  color: #fff;
+  background-color: #2C3E50;
+  background-image: url(assets/img/header.svg);
+  background-size: cover;
+  margin-bottom: 40px;
+  overflow-x: hidden;
+}
+
+.header h1 {
+  font-size: 40px;
+  font-weight: 900;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  line-height: 110px;
+}
