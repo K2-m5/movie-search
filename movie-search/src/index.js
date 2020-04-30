@@ -65,5 +65,3 @@ const mySwiper = new Swiper('.swiper-container', {
     prevEl: '.swiper-btn-prev',
   },
 });
-
-// mySwiper.init();
