@@ -1,7 +1,13 @@
 import './style.css';
 
 // Import Swiper and modules
-import { Swiper, Navigation, Pagination, Scrollbar } from 'swiper/js/swiper.esm';
+import {
+  Swiper,
+  Navigation,
+  Pagination,
+  Scrollbar,
+} from '../node_modules/swiper/js/swiper.esm';
+import '../node_modules/swiper/css/swiper.min.css';
 
 import header from './components/header/header';
 import formSearch from './components/formSearch/formSearch';
@@ -30,9 +36,24 @@ function initializeMarkup() {
 initializeMarkup();
 
 const mySwiper = new Swiper('.swiper-container', {
-  slidesPerView: 3,
-  // init: false,
-  spaceBetween: 30,
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    680: {
+      slidesPerView: 2,
+      spaceBetween: 80,
+    },
+    1060: {
+      slidesPerView: 3,
+      spaceBetween: 80,
+    },
+    1440: {
+      slidesPerView: 4,
+      spaceBetween: 80,
+    },
+  },
   loop: true,
   loopFillGroupWithBlank: true,
   pagination: {

@@ -1,3 +1,26 @@
+function card() {
+  const cardRoot = document.createElement('div');
+  const headerCard = document.createElement('a');
+  const bodyCard = document.createElement('div');
+  const footerCard = document.createElement('div');
+  const imbdCard = document.createElement('dib');
+  const rating = document.createElement('span');
+
+  cardRoot.classList.add('card', 'swiper-slide');
+  headerCard.classList.add('card-header');
+  bodyCard.classList.add('card-body');
+  footerCard.classList.add('card-footer');
+  imbdCard.classList.add('card-imbd');
+
+  cardRoot.appendChild(headerCard);
+  cardRoot.appendChild(bodyCard);
+  cardRoot.appendChild(footerCard);
+  cardRoot.appendChild(imbdCard);
+  imbdCard.appendChild(rating);
+
+  return cardRoot;
+}
+
 const swiper = () => {
   const outerSwiper = document.createElement('div');
 
@@ -14,13 +37,15 @@ const swiper = () => {
   btnNext.classList.add('swiper-btn-next', 'swiper-btn');
   btnPrevious.classList.add('swiper-btn-prev', 'swiper-btn');
 
-  wrapper.innerHTML = ('<div class="card swiper-slide">Slide 1</div><div class="card swiper-slide">Slide 2</div><div class="card swiper-slide">Slide 3</div><div class="card swiper-slide">Slide 4</div><div class="card swiper-slide">Slide 5</div><div class="card swiper-slide">Slide 6</div><div class="card swiper-slide">Slide 7</div><div class="card swiper-slide">Slide 8</div><div class="card swiper-slide">Slide 9</div><div class="card swiper-slide">Slide 10</div><div class="swiper-pagination"></div>');
-
   outerSwiper.appendChild(rootContainer);
   rootContainer.appendChild(wrapper);
   rootContainer.appendChild(pagination);
   outerSwiper.appendChild(btnNext);
   outerSwiper.appendChild(btnPrevious);
+
+  for (let i = 0; i < 10; i += 1) {
+    wrapper.appendChild(card());
+  }
 
   return outerSwiper;
 };

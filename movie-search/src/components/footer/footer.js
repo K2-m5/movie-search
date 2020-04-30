@@ -6,8 +6,8 @@ const footer = () => {
 
   footerRoot.classList.add('footer');
   footerContainer.classList.add('footer-container');
-  footerLinkRSS.classList.add('footer__link_rss');
-  footerLinkGithub.classList.add('footer__link_github');
+  footerLinkRSS.classList.add('rss');
+  footerLinkGithub.classList.add('github');
 
   footerLinkRSS.setAttribute('href', 'https://rs.school/');
   footerLinkGithub.setAttribute('href', 'https://github.com/K2-m5');
