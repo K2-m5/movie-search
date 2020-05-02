@@ -13,27 +13,47 @@ import header from './components/header/header';
 import formSearch from './components/formSearch/formSearch';
 import swiper from './components/swiper/swiper';
 import footer from './components/footer/footer';
+import Fetch from './components/Fetch/Fetch';
+import Card from './components/card/card';
 
-// Install modules
 Swiper.use([Navigation, Pagination, Scrollbar]);
 
 function initializeMarkup() {
+  const fetchRun = new Fetch();
+  async function init() {
+    const data = await fetchRun.getMovie();
+    return data;
+  }
+  init();
   const headerEl = header();
   const containerEl = document.createElement('div');
   const formSearchEl = formSearch();
   const swiperEl = swiper();
   const footerEl = footer();
-
   containerEl.classList.add('container');
   containerEl.appendChild(formSearchEl);
   containerEl.appendChild(swiperEl);
+  const wrapper = document.querySelector('.wrapper');
+  const card = new Card();
 
   document.body.appendChild(headerEl);
   document.body.appendChild(containerEl);
   document.body.appendChild(footerEl);
+  // const fetchRun = new Fetch();
+  // const data = fetchRun.getMovie();
+  
+  function render() {
+    for (let i = 0; i < 10; i += 1) {
+      wrapper.appendChild(card(data));
+    }
+  }
+
+  render(data);
 }
 
 initializeMarkup();
+
+// const btnSearch = document.querySelector('.search-btn')
 
 const mySwiper = new Swiper('.swiper-container', {
   breakpoints: {

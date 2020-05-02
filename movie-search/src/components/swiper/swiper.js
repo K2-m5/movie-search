@@ -1,25 +1,16 @@
-function card() {
-  const cardRoot = document.createElement('div');
-  const headerCard = document.createElement('a');
-  const bodyCard = document.createElement('div');
-  const footerCard = document.createElement('div');
-  const imbdCard = document.createElement('dib');
-  const rating = document.createElement('span');
+/* class Card {
+  constructor() {
+    this.cardRoot = this.createElement('div');
+    this.headerCard = this.createElement('a');
+    this.headerCard = this.createElement('div');
+    this.headerCard = this.createElement('div');
+    this.headerCard = this.createElement('div');
+    this.headerCard = this.createElement('span');
+  }
+} */
 
-  cardRoot.classList.add('card', 'swiper-slide');
-  headerCard.classList.add('card-header');
-  bodyCard.classList.add('card-body');
-  footerCard.classList.add('card-footer');
-  imbdCard.classList.add('card-imbd');
-
-  cardRoot.appendChild(headerCard);
-  cardRoot.appendChild(bodyCard);
-  cardRoot.appendChild(footerCard);
-  cardRoot.appendChild(imbdCard);
-  imbdCard.appendChild(rating);
-
-  return cardRoot;
-}
+// import card from '../card/card';
+// import data from '..src/index';
 
 const swiper = () => {
   const outerSwiper = document.createElement('div');
@@ -42,10 +33,6 @@ const swiper = () => {
   rootContainer.appendChild(pagination);
   outerSwiper.appendChild(btnNext);
   outerSwiper.appendChild(btnPrevious);
-
-  for (let i = 0; i < 10; i += 1) {
-    wrapper.appendChild(card());
-  }
 
   return outerSwiper;
 };
