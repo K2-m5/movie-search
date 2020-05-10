@@ -1,7 +1,7 @@
 export default class Fetch {
   constructor(searchString) {
     this.key = 'c75f0ee4';
-    this.baseUrl = 'http://www.omdbapi.com';
+    this.baseUrl = 'https://www.omdbapi.com';
     this.searchString = searchString;
   }
 
