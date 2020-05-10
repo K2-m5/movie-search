@@ -2,8 +2,10 @@ import Components from '../Component/Component';
 
 
 export default class StructureHtml extends Components {
-  constructor() {
+  constructor(data) {
     super();
+
+    this.data = data;
   }
 
   createHeader() {
@@ -50,11 +52,51 @@ export default class StructureHtml extends Components {
     return this.formSearchRoot;
   }
 
-  createSwiper() {
-    this.outerSwiper = this.createElement('div', 'swiper-outer');
-    this.rootContainer = this.createElement('div', 'swiper-container');
+  createCard(card) {
+    this.cardRoot = this.createElement('div', 'card', 'swiper-slide');
+
+    this.headerCard = this.createElement('a', 'card-header');
+    this.headerCard.textContent = `${card.Title}`;
+    this.headerCard.href = `https://www.imdb.com/title/${card.imdbID}/videogallery/`;
+    this.headerCard.target = '_blank';
+
+    this.bodyCard = this.createElement('div', 'card-body');
+    this.bodyCard.style.backgroundImage = `url(${card.Poster})`;
+
+    this.footerCard = this.createElement('div', 'card-footer');
+    this.footerCard.textContent = `${card.Year}`;
+
+    this.imdbCard = this.createElement('div', 'card-imbd');
+    this.imdbCard.append(this.createElement('span'), `${card.imdbRating}`);
+
+    this.cardRoot.append(
+      this.headerCard,
+      this.bodyCard,
+      this.footerCard,
+      this.imdbCard
+    );
+
+    return this.cardRoot;
+  }
+
+  renderCard() {
     this.wrapper = this.createElement('div', 'swiper-wrapper');
     this.pagination = this.createElement('div', 'swiper-pagination');
+
+    for (let i = 0; i < this.data.length; i += 1) {
+      const card = this.data[i];
+      this.wrapper.append(
+        this.createCard(card)
+      );
+    }
+
+    return this.wrapper;
+  }
+
+  createSwiper() {
+    this.wrapper = this.renderCard();
+    this.outerSwiper = this.createElement('div', 'swiper-outer');
+    this.rootContainer = this.createElement('div', 'swiper-container');
     this.rootContainer.append(this.wrapper);
     this.rootContainer.append(this.pagination);
     this.btnNext = this.createElement('div', 'swiper-btn-next', 'swiper-btn');
@@ -100,4 +142,6 @@ export default class StructureHtml extends Components {
 
     return this.footerRoot;
   }
+
+  searchMovie() {}
 }
