@@ -1,34 +1,28 @@
-import Components from '../Component/Component';
+import { createElement } from '../Component/Component';
 
-export default class Card extends Components {
-  constructor(data) {
-    super();
+export default class Card {
+  static createCardMarkup(card) {
+    const cardRoot = createElement('div', 'card', 'swiper-slide');
+    const headerCard = createElement('a', 'card-header');
 
-    this.data = data;
-  }
+    headerCard.textContent = `${card.Title}`;
+    headerCard.href = `https://www.imdb.com/title/${card.imdbID}/videogallery/`;
+    headerCard.target = '_blank';
 
-  createCard() {
-    const cardRoot = this.createElement('div', 'card', 'swiper-slide');
+    const bodyCard = createElement('div', 'card-body');
+    bodyCard.style.backgroundImage = `url(${card.Poster})`;
 
-    this.headerCard = this.createElement('a', 'card-header');
-    this.headerCard.textContent = `${this.data.Title}`;
-    this.headerCard.href = `https://www.imdb.com/title/${this.data.imdbID}/videogallery/`;
-    this.headerCard.target = '_blank';
+    const footerCard = createElement('div', 'card-footer');
+    footerCard.textContent = `${card.Year}`;
 
-    this.bodyCard = this.createElement('div', 'card-body');
-    this.bodyCard.style.backgroundImage = `url(${this.data.Poster})`;
-
-    this.footerCard = this.createElement('div', 'card-footer');
-    this.footerCard.textContent = `${this.data.Year}`;
-
-    this.imdbCard = this.createElement('div', 'card-imbd');
-    this.imdbCard.append(this.createElement('span'), `${this.data.imdbRating}`);
+    const imdbCard = createElement('div', 'card-imbd');
+    imdbCard.append(createElement('span'), `${card.imdbRating}`);
 
     cardRoot.append(
-      this.headerCard,
-      this.bodyCard,
-      this.footerCard,
-      this.imdbCard
+      headerCard,
+      bodyCard,
+      footerCard,
+      imdbCard
     );
 
     return cardRoot;

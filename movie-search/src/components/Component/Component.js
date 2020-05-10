@@ -1,17 +1,11 @@
-export default class Component {
-  createElement(tag, ...classNames) {
-    const element = document.createElement(tag);
-    this.k = 0;
+const createElement = (tag, ...classNames) => {
+  const element = document.createElement(tag);
 
-    if (!!classNames && classNames.length > 0) {
-      element.classList.add(...classNames);
-    }
-
-    return element;
+  if (!!classNames && classNames.length > 0) {
+    element.classList.add(...classNames);
   }
 
-  getElementByClass(selector) {
-    const element = this.querySelector(selector);
-    return element;
-  }
-}
+  return element;
+};
+
+export { createElement };
