@@ -22,7 +22,7 @@ body {
   background-image: url(assets/img/header.svg);
   background-size: cover;
   margin-bottom: 40px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .header h1 {
@@ -184,14 +184,14 @@ body {
   display: block;
   height: 43px;
   margin-bottom: 15px;
-  overflow-y: hidden;
+  overflow: hidden;
   background-color: #fff;
   color: #000;
   text-align: center;
   font-size: 24px;
   padding: 15px;
   white-space: pre-wrap; 
-  text-overflow: clip; 
+  text-overflow: ellipsis; 
 }
 
 .card-body {
@@ -210,7 +210,6 @@ body {
 .card-imbd {
   text-align: center;
   padding: 5px;
-  margin-bottom: 20px;
 }
 
 .card-imbd span {
@@ -219,13 +218,14 @@ body {
 }
 
 .card-imbd span::before {
-  content: "";
   position: absolute;
-  background-image: url(assets/img/star.svg);
   width: 24px;
   height: 24px;
   top: -2px;
   left: -25px;
+  content: "";
+  background-image: url(assets/img/star.svg);
+
 }
 
 .swiper-wrapper {
@@ -425,22 +425,39 @@ body {
 }
 
 @media (max-width: 440px) {
+
+  .header {
+    height: 80px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+  .header h1 {
+    font-size: 35px;
+    line-height: 80px;
+}
+
   .search {
-    flex-direction: column;    
+    flex-direction: column;
+    height: 95px;
+    margin-bottom: 15px;
   }
   .search .search-input {
     width: 300px;
     padding-left: 10px;
     padding-right: 10px;
     background-image: none;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    height: 40px;
+    font-size: 20px;
   }
   .search-clear {
     display: none;
   }
   .search-btn {
     width: 300px;
-    min-height: 44px;
+    height: 40px;
+    font-size: 20px;
   }
   .footer-container {
     flex-direction: column;

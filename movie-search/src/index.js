@@ -5,7 +5,7 @@ import Fetch from './components/Fetch/Fetch';
 
 async function initializeMarkup() {
   const fetchObj = new Fetch();
-  const movie = 'Transformers';
+  const movie = 'Terminator';
   const data = await fetchObj.searchMovie(movie);
 
   const structureHTML = new StructureHtml(document.body, data);

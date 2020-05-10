@@ -1,6 +1,6 @@
 export default class Fetch {
   constructor(searchString) {
-    this.key = '4f7b4a11';
+    this.key = 'c75f0ee4';
     this.baseUrl = 'http://www.omdbapi.com';
     this.searchString = searchString;
   }
@@ -33,13 +33,5 @@ export default class Fetch {
     const movieInfo = await resp.json();
 
     return movieInfo;
-  }
-
-  async getMovie() {
-    const url = `http://www.omdbapi.com?s=Transformers&apikey=${this.key}`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    return data;
   }
 }
