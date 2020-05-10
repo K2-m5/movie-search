@@ -7,7 +7,6 @@ async function initializeMarkup() {
   const fetchObj = new Fetch();
   const movie = 'Transformers';
   const data = await fetchObj.searchMovie(movie);
-  console.log(data);
 
   const structureHTML = new StructureHtml(document.body, data);
 

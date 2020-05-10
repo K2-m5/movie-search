@@ -39,7 +39,6 @@ export default class Fetch {
     const url = `http://www.omdbapi.com?s=Transformers&apikey=${this.key}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log('data is here');
 
     return data;
   }
