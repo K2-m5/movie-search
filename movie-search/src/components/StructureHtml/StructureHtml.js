@@ -31,7 +31,11 @@ export default class StructureHtml {
 
       this.filmPanel.updateData(data);
     });
-    this.filmPanel = new FilmPanel(this.data);
+    this.filmPanel = new FilmPanel(this.data, async (page, searchString) => {
+      const data = await this.fetchObj.searchMovie(searchString, page);
+
+      this.filmPanel.saveNewPage(data.moviesList);
+    });
 
     bodyRoot.append(
       formSearch.create(),

@@ -11,10 +11,15 @@ import Card from '../card/card';
 Swiper.use([Navigation, Pagination, Scrollbar]);
 
 export default class FilmPanel {
-  constructor(data) {
+  constructor(data, nextPageHandler) {
+    this.nextPageHandler = nextPageHandler;
+    this.page = 1;
     this.data = data;
+    this.newItems = [];
     this.swiper = null;
     this.cardsRoot = null;
+    this.isDataFetchInProgress = false;
+    this.isEndReached = false;
   }
 
   updateData(data) {
@@ -33,17 +38,31 @@ export default class FilmPanel {
     this.swiper.update();
   }
 
+  saveNewPage(newMovieList) {
+    this.isDataFetchInProgress = false;
+    this.newItems = newMovieList;
+
+    if (this.isEndReached) {
+      this.drawCards(newMovieList);
+
+      this.swiper.update();
+
+      this.isEndReached = false;
+    }
+  }
+
+  drawCards(cardData) {
+    for (let i = 0; i < cardData.length; i += 1) {
+      this.cardsRoot.append(Card.createCardMarkup(cardData[i]));
+    }
+  }
+
   createSlides() {
     if (this.cardsRoot === null) {
       this.cardsRoot = createElement('div', 'swiper-wrapper');
     }
 
-    for (let i = 0; i < this.data.length; i += 1) {
-      const card = this.data[i];
-      this.cardsRoot.append(
-        Card.createCardMarkup(card)
-      );
-    }
+    this.drawCards(this.data.moviesList);
   }
 
   createMarkup() {
@@ -96,6 +115,32 @@ export default class FilmPanel {
       navigation: {
         nextEl: '.swiper-btn-next',
         prevEl: '.swiper-btn-prev'
+      },
+      on: {
+        progress: (currentProgress) => {
+          if (currentProgress >= 0.7
+            && !this.isDataFetchInProgress
+            && !(this.page * 10 > parseInt(this.data.totalResults, 0))) {
+            this.isDataFetchInProgress = true;
+            this.page += 1;
+
+            this.nextPageHandler(this.page, this.data.searchString);
+          }
+
+          if (currentProgress === 1) {
+            if (this.newItems.length > 0) {
+              this.drawCards(this.newItems);
+
+              this.swiper.update();
+
+              this.newItems = [];
+
+              return;
+            }
+
+            this.isEndReached = true && this.isDataFetchInProgress;
+          }
+        }
       }
     });
   }

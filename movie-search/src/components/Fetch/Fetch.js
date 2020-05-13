@@ -9,8 +9,8 @@ export default class Fetch {
     return `${this.baseUrl}?${parameters}&apiKey=${this.key}`;
   }
 
-  async searchMovie(searchString) {
-    const url = this.getUrl(`s=${searchString}`);
+  async searchMovie(searchString, page = 1) {
+    const url = this.getUrl(`s=${searchString}&page=${page}`);
     const response = await fetch(url);
     const data = await response.json();
 
@@ -24,7 +24,11 @@ export default class Fetch {
 
     const movies = await Promise.all(moviesTasks);
 
-    return movies;
+    return {
+      moviesList: movies,
+      totalResults: data.totalResults,
+      searchString: searchString
+    };
   }
 
   async getMovieInfo(movieId) {
