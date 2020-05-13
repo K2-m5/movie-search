@@ -369,7 +369,7 @@ body {
   animation: lds-ellipsis3 .6s infinite;
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1440px) {
   .container {
     max-width: 1060px;
   }
@@ -378,11 +378,10 @@ body {
   }
   .swiper-outer {
     max-width: 1060px;
-    margin: 0 auto;
   }  
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1060px) {
   .container {
     max-width: 680px;
   }
@@ -391,7 +390,6 @@ body {
   }
   .swiper-outer {
     max-width: 680px;
-    margin: 0 auto;
   }  
 }
 
@@ -411,7 +409,6 @@ body {
   }
   .swiper-outer {
     max-width: 300px;
-    margin: 0 auto;
   }  
   .search-keyboard {
     display: none;
